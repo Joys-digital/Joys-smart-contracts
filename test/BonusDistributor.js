@@ -1,0 +1,2 @@
+contract('BonusDistributor', function(accounts) {
+});
