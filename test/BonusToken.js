@@ -1,5 +1,8 @@
 const BonusToken = artifacts.require('BonusToken');
 
+const utils = require("./utils");
+const expect = utils.expect;
+
 contract('BonusToken', function([creator]) {
 	before(async function() {
 		this.token = await BonusToken.new({ from: creator });
@@ -14,13 +17,13 @@ contract('BonusToken', function([creator]) {
 	});
 
 	it('should have 18 decimals', async function() {
-		expect(await this.token.decimals()).to.be.equal(18);
+		expect(await this.token.decimals()).to.be.bignumber.equal(18);
 	});
 
 	it('should assign the initial total supply to the creator', async function() {
 		const totalSupply = await this.token.totalSupply();
 		const creatorBalance = await this.token.balanceOf(creator);
 
-		expect(creatorBalance).to.be.equal(totalSupply);
+		expect(creatorBalance).to.be.bignumber.equal(totalSupply);
 	});
 });
