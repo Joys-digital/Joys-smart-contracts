@@ -2,10 +2,11 @@ const BonusToken = artifacts.require('BonusToken');
 
 const utils = require("./utils");
 const expect = utils.expect;
+const units = utils.inBaseUnits(18);
 
 contract('BonusToken', function([creator]) {
 	before(async function() {
-		this.token = await BonusToken.new({ from: creator });
+		this.token = await BonusToken.deployed();
 	});
 
 	it('should have correct name', async function() {
@@ -20,10 +21,10 @@ contract('BonusToken', function([creator]) {
 		expect(await this.token.decimals()).to.be.bignumber.equal(18);
 	});
 
-	it('should assign the initial total supply to the creator', async function() {
+	it('should have correct initial total supply', async function() {
 		const totalSupply = await this.token.totalSupply();
-		const creatorBalance = await this.token.balanceOf(creator);
+		const expectedSupply = units(10000);
 
-		expect(creatorBalance).to.be.bignumber.equal(totalSupply);
+		expect(totalSupply).to.be.bignumber.equal(expectedSupply);
 	});
 });

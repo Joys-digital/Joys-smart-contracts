@@ -8,15 +8,8 @@ const units = utils.inBaseUnits(18);
 
 contract('BonusDistributor', function([creator, client, secondClient, thirdClient]) {
 	before(async function() {
-		this.token = await BonusToken.new({ from: creator });
-
-		this.distributor = await BonusDistributor.new(this.token.address, { from: creator });
-
-		await this.token.transfer(
-			this.distributor.address,
-			await this.token.totalSupply(),
-			{ from: creator }
-		);
+		this.token = await BonusToken.deployed();
+		this.distributor = await BonusDistributor.deployed();
 	});
 
 	it('should have an owner', async function() {

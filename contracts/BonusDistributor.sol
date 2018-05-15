@@ -18,7 +18,6 @@ contract BonusDistributor is Ownable {
         external onlyOwner
     {
         uint256 bonusAmount = calculateBonus(_paymentAmount);
-
         token.transfer(_beneficiary, bonusAmount);
     }
 
