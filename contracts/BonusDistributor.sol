@@ -1,15 +1,16 @@
 pragma solidity ^0.4.23;
 
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
 import "./BonusToken.sol";
 
 contract BonusDistributor is Ownable {
+    using SafeMath for uint256;
+
     BonusToken token;
 
-    uint256 TOKEN = 10 ** 18;
-
-    constructor(address _token) {
+    constructor(address _token) public {
         token = BonusToken(_token);
     }
 
@@ -22,16 +23,16 @@ contract BonusDistributor is Ownable {
     }
 
     function calculateBonus(uint256 _amount)
-        public constant returns(uint256)
+        public pure returns(uint256)
     {
-        if(_amount == 0) return 0;
-
-        if(_amount < 5 * TOKEN / 10)
-            return 1 * TOKEN;
-
-        if(_amount >= 5 * TOKEN / 10 && _amount <= 1 * TOKEN)
-            return 10 * TOKEN;
-
-        return _amount / 100;
+        if(_amount > 1000 finney) {
+            return _amount.div(100);
+        } else if(_amount >= 500 finney) {
+            return 10 ether;
+        } else if(_amount > 0) {
+            return 1 ether;
+        } else {
+            return 0;
+        }
     }
 }
