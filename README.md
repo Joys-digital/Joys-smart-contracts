@@ -4,7 +4,7 @@
 ```
 npm install
 ./node_modules/truffle/build/cli.bundled. develop
-./node_modules/truffle/build/cli.bundled.js test
+./node_modules/truffle/build/cli.bundled.js test --network development
 ```
 
 ### Deployment
