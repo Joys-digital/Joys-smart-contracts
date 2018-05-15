@@ -1,13 +1,16 @@
 const BonusToken = artifacts.require("./BonusToken.sol");
 const BonusDistributor = artifacts.require("./BonusDistributor.sol");
 
-
 const bonusSupply = 10000; // amount in tokens
 let admin = null; // address of owner of distributor contract
 
 module.exports = function(deployer, network, [creator]) {
 	if(network === 'development') {
 		admin = creator;
+	}
+
+	if(admin === null) {
+		console.log('Please set admin address (migrations/2_bonus.js line 5)');
 	}
 
 	let tokenAddress, distributorAddress;
