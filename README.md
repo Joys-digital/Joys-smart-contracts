@@ -10,7 +10,7 @@ npm install
 ### Deployment
 ```
 npm install
-vim truffle.js
-vim migrations/2_bonus.js
+vim truffle.js ( 10, 11 lines )
+vim migrations/2_bonus.js ( 4,5 lines )
 ./node_modules/truffle/build/cli.bundled. migrate --network joys
 ```
