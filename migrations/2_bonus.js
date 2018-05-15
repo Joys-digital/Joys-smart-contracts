@@ -10,7 +10,8 @@ module.exports = function(deployer, network, [creator]) {
 	}
 
 	if(admin === null) {
-		console.log('Please set admin address (migrations/2_bonus.js line 5)');
+		throw new Error('Please set admin address (migrations/2_bonus.js line 5)');
+		return;
 	}
 
 	let tokenAddress, distributorAddress;
